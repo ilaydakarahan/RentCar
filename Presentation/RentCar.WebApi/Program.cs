@@ -11,6 +11,7 @@ using RentCar.Application.Features.CQRS.Handlers.CarHandlers.Write;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Write;
 using RentCar.Application.Interfaces;
+using RentCar.Application.Services;
 using RentCar.Persistance.Context;
 using RentCar.Persistance.Repositories;
 
@@ -20,6 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RentCarContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+
 
 
 builder.Services.AddControllers();
@@ -67,6 +69,8 @@ builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 
+
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
