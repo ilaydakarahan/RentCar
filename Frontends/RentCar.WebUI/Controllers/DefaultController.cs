@@ -2,12 +2,10 @@
 
 namespace RentCar.WebUI.Controllers
 {
-    public class AboutController : Controller
+    public class DefaultController : Controller
     {
         public IActionResult Index()
         {
-            ViewBag.Title1 = "Hakkımızda";
-            ViewBag.Title2 = "Biz Kimiz ?";
             return View();
         }
     }

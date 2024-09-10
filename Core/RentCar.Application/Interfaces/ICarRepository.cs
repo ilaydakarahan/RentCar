@@ -10,5 +10,6 @@ namespace RentCar.Application.Interfaces
     public interface ICarRepository
     {
         Task<List<Car>> GetCarsListWithBrandsAsync();
+        Task<List<Car>> GetLast5CarsWithBrands();
     }
 }
