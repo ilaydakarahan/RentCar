@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace RentCar.Application.Features.Mediator.Handlers.AuthorHandlers.Write
 {
-    public class UpdateAuthorCommandHandler : IRequestHandler<UpdateAuthorCommand>
+    public class UpdateBlogCommandHandler : IRequestHandler<UpdateAuthorCommand>
     {
         private readonly IRepository<Author> _repository;
 
-        public UpdateAuthorCommandHandler(IRepository<Author> repository)
+        public UpdateBlogCommandHandler(IRepository<Author> repository)
         {
             _repository = repository;
         }

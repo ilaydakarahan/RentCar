@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace RentCar.Application.Features.Mediator.Handlers.AuthorHandlers.Read
 {
-    public class GetAuthorByIdQueryHandler : IRequestHandler<GetAuthorByIdQuery, GetAuthorByIdQueryResult>
+    public class GetBlogByIdQueryHandler : IRequestHandler<GetAuthorByIdQuery, GetAuthorByIdQueryResult>
     {
         private readonly IRepository<Author> _repository;
 
-        public GetAuthorByIdQueryHandler(IRepository<Author> repository)
+        public GetBlogByIdQueryHandler(IRepository<Author> repository)
         {
             _repository = repository;
         }

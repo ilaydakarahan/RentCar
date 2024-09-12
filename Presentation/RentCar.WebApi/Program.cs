@@ -10,7 +10,10 @@ using RentCar.Application.Features.CQRS.Handlers.CarHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.CarHandlers.Write;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Write;
+using RentCar.Application.Features.Mediator.Handlers.BlogHandlers.Read;
 using RentCar.Application.Interfaces;
+using RentCar.Application.Interfaces.BlogInterfaces;
+using RentCar.Application.Interfaces.CarPricingInterfaces;
 using RentCar.Application.Services;
 using RentCar.Persistance.Context;
 using RentCar.Persistance.Repositories;
@@ -21,6 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RentCarContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 
 
 
@@ -53,13 +58,14 @@ builder.Services.AddScoped<UpdateBrandCommandHandler>();
 builder.Services.AddScoped<GetCarByIdQueryHandler>();
 builder.Services.AddScoped<GetCarQueryHandler>();
 builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
-builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
+builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();        //cqrs le yazýldýðý için eklemeliyiz.
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 
 builder.Services.AddScoped<GetBlogCategoryByIdQueryHandler>();
 builder.Services.AddScoped<GetBlogCategoryQueryHandler>();
+//builder.Services.AddScoped<GetLast3BlogsWithAutorsQueryHandler>();  //Mediator le yazýldýðý için buna gerek kalmadý
 builder.Services.AddScoped<CreateBlogCategoryCommandHandler>();
 builder.Services.AddScoped<RemoveBlogCategoryCommandHandler>();
 builder.Services.AddScoped<UpdateBlogCategoryCommandHandler>();
