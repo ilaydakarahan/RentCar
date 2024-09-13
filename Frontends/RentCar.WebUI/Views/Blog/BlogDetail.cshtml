@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
 
-            @await Component.InvokeAsync("_BlogDetailMainComponentPartial")
+            @await Component.InvokeAsync("_BlogDetailMainComponentPartial", new { id = ViewBag.blogid })
 
             <div class="col-md-4 sidebar ftco-animate">
 
@@ -19,8 +19,8 @@
 
                 @await Component.InvokeAsync("_BlogDetailRecentBlogsComponentPartial")
 
-                @await Component.InvokeAsync("_BlogDetailTagCloudComponentPartial")
-
+                @await Component.InvokeAsync("_BlogDetailTagCloudComponentPartial", new { id = ViewBag.blogid })
+                <!--Sayfada sağda gözüken etiket bulutu kısmı. içine girdiğimiz bloğa ait olan etiketler.Id ye göre getirme işlemi-->
 
                 @await Component.InvokeAsync("_BlogDetailParagraphComponentPartial")
 

@@ -14,6 +14,7 @@ using RentCar.Application.Features.Mediator.Handlers.BlogHandlers.Read;
 using RentCar.Application.Interfaces;
 using RentCar.Application.Interfaces.BlogInterfaces;
 using RentCar.Application.Interfaces.CarPricingInterfaces;
+using RentCar.Application.Interfaces.TagCloudInterfaces;
 using RentCar.Application.Services;
 using RentCar.Persistance.Context;
 using RentCar.Persistance.Repositories;
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<RentCarContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 
 

@@ -25,6 +25,16 @@ namespace RentCar.Persistance.Repositories
             return values;
         }
 
+        public async Task<Blog> GetAuthorByBlogId(int id)
+        {
+            var values = await _context.Blogs.Include(x => x.Author).Where(x => x.BlogId == id).FirstOrDefaultAsync();
+            if (values == null)
+            {
+                throw new Exception("İlgili bloga ait yazar bulunamadı");
+            }
+            return values;
+        }
+
         public async Task<List<Blog>> GetLast3BlogsWithAutorsAsync()
         {
             var values = await _context.Blogs.Include(x=>x.Author).OrderByDescending(x=>x.BlogId).Take(3).ToListAsync();
