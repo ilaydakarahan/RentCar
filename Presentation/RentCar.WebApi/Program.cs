@@ -10,7 +10,7 @@ using RentCar.Application.Features.CQRS.Handlers.CarHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.CarHandlers.Write;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.ContactHandlers.Write;
-using RentCar.Application.Features.Mediator.Handlers.BlogHandlers.Read;
+using RentCar.Application.Features.RepositoryPattern;
 using RentCar.Application.Interfaces;
 using RentCar.Application.Interfaces.BlogInterfaces;
 using RentCar.Application.Interfaces.CarPricingInterfaces;
@@ -28,6 +28,7 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 
 
 

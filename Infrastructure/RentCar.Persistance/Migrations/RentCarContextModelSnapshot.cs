@@ -294,6 +294,39 @@ namespace RentCar.Persistance.Migrations
                     b.ToTable("CarPricings");
                 });
 
+            modelBuilder.Entity("RentCar.Domain.Entities.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"));
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CommentContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("RentCar.Domain.Entities.Contact", b =>
                 {
                     b.Property<int>("ContactId")
@@ -586,6 +619,17 @@ namespace RentCar.Persistance.Migrations
                     b.Navigation("Pricing");
                 });
 
+            modelBuilder.Entity("RentCar.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("RentCar.Domain.Entities.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("RentCar.Domain.Entities.TagCloud", b =>
                 {
                     b.HasOne("RentCar.Domain.Entities.Blog", "Blog")
@@ -604,6 +648,8 @@ namespace RentCar.Persistance.Migrations
 
             modelBuilder.Entity("RentCar.Domain.Entities.Blog", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("TagClouds");
                 });
 

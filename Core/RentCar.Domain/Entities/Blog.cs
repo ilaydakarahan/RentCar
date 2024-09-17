@@ -15,8 +15,10 @@ namespace RentCar.Domain.Entities
         public string CoverImageURL { get; set; }
         public DateTime CreatedDate { get; set; }
         public int BlogCategoryId { get; set; }
+        public string Description { get; set; }
         public BlogCategory BlogCategory { get; set; }
         public List<TagCloud> TagClouds { get; set; }
-        public string Description { get; set; }
+        public List<Comment> Comments { get; set; }
+
     }
 }

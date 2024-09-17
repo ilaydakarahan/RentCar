@@ -1,0 +1,62 @@
+﻿@model List<ResultCarWithBrandDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Araba Listesi</h4>
+                <p class="card-subtitle mb-4">
+                    Arabalar ile ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçeleştirebilirsiniz.
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Resim</th>
+                                <th>Marka</th>
+                                <th>Model</th>
+                                <th>Vites</th>
+                                <th>Km</th>
+                                <th colspan="5" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.CoverImageUrl</td>
+                                    <td>@item.BrandName</td>
+                                    <td>@item.Model</td>
+                                    <td>@item.Transmission</td>
+                                    <td>@item.Km.ToString("N0")</td>
+                                    <td><a href="/Admin/AdminCar/RemoveCar/@item.CarId" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Sil</a></td>
+                                    <td><a href="/Admin/AdminCar/UpdateCar/@item.CarId" class="btn btn-outline-success"> <i class="fa fa-edit"></i>  Güncelle</a></td>
+                                    <td><a href="/Admin/AdminCarFeatureDetail/Index/@item.CarId" class="btn btn-outline-primary"> <i class="fa fa-search"></i>  Detaylar</a></td>
+                                    <td><a href="/Admin/AdminCar/CarPricing/@item.CarId" class="btn btn-outline-secondary"> <i class="fa fa-tags"></i>  Fiyat Bilgileri</a></td>
+                                    <td><a href="/Admin/AdminCar/AddCarFeatureDetail/@item.CarId" class="btn btn-outline-dark"> <i class="fa fa-cog"></i>  Araça Özellik Ekle</a></td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <a href="/Admin/AdminCar/CreateCar/" class="btn btn-outline-primary"><i class="fa fa-pen"></i> Ekle</a>
+                </div>
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+
+</div>
+
