@@ -1,4 +1,5 @@
-﻿using RentCar.Application.Features.RepositoryPattern;
+﻿using Microsoft.EntityFrameworkCore;
+using RentCar.Application.Features.RepositoryPattern;
 using RentCar.Domain.Entities;
 using RentCar.Persistance.Context;
 using System;
@@ -40,6 +41,11 @@ namespace RentCar.Persistance.Repositories
         public Comment GetById(int id)
         {
             return _context.Comments.Find(id);
+        }
+
+        public List<Comment> GetCommentsByBlogId(int id)
+        {
+            return _context.Set<Comment>().Include(t => t.Blog).Where(z => z.BlogId ==id).ToList();
         }
 
         public void Remove(Comment entity)

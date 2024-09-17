@@ -1,0 +1,46 @@
+﻿@model List<ResultBlogCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Blog Kategori Listesi</h4>
+                <p class="card-subtitle mb-4">Kategorilerle ilgili işlemleri buradan gerçekleştirebilirsiniz.</p>
+                <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kategori Adı</th>
+                                    <th>Sil</th>
+                                    <th>Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@item.BlogCategoryName</td>
+                                        <td><a href="/Admin/AdminBlogCategory/RemoveBlogCategory/@item.BlogCategoryId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Admin/AdminBlogCategory/UpdateBlogCategory/@item.BlogCategoryId" class="btn btn-secondary">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <a href="/Admin/AdminBlogCategory/CreateBlogCategory/" class="btn btn-success">Yeni Kategori Girişi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

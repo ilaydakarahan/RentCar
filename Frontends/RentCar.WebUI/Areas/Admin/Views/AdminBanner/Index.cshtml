@@ -36,9 +36,9 @@
                                             <td>@item.Description</td>
                                             <td>@item.VideoDescription</td>
                                             <td>@item.VideoUrl</td>
-                                            <td style="width:100px"><button onclick="DeleteBanner(@item.BannerID)" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Sil</button></td>
+                                            <td style="width:100px"><a href="/Admin/AdminBanner/RemoveBanner/@item.BannerID" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Sil</a></td>
                                             <td style="width:150px"><a href="/Admin/AdminBanner/UpdateBanner/@item.BannerID" class="btn btn-outline-success"> <i class="fa fa-edit"></i>  Güncelle</a></td>
-                                            <td style="width:180px"><a href="/Admin/AdminBanner/UpdateBanner/@item.BannerID" class="btn btn-outline-secondary"> <i class="fa fa-play"></i>  Youtube'da Aç</a></td>
+                                            <td style="width:180px"><a href="#" class="btn btn-outline-secondary"> <i class="fa fa-play"></i>  Youtube'da Aç</a></td>
                                         </tr>
                                     }
 

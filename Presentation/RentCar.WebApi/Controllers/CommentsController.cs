@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RentCar.Application.Features.RepositoryPattern;
 using RentCar.Domain.Entities;
+using RentCar.Dto.CommentDto;
 
 namespace RentCar.WebApi.Controllers
 {
@@ -21,6 +22,14 @@ namespace RentCar.WebApi.Controllers
             var values = _commentRepository.GetAll();
             return Ok(values);
         }
+
+        [HttpGet("GetCommentById/{id}")]
+        public IActionResult GetCommentById(int id)
+        {
+            var values = _commentRepository.GetById(id);
+            return Ok(values);
+        }
+
 
         //[HttpPost]
         //public IActionResult CreateComment(CreateCommentDto comment)
@@ -53,6 +62,25 @@ namespace RentCar.WebApi.Controllers
             var value = _commentRepository.GetById(id);
             _commentRepository.Remove(value);
             return Ok();
+        }
+
+        [HttpGet("CommentListByBlog/{id}")]
+        public IActionResult CommentListByBlog(int id)
+        {
+            var values = _commentRepository.GetCommentsByBlogId(id);
+            var values2 = values.Select(x => new ResultCommentDto
+            {
+                BlogId = x.BlogId,
+                CommentContent = x.CommentContent,
+                CommentID = x.CommentID,
+                CreatedDate = x.CreatedDate,
+                Email = x.Email,
+                Name = x.Name,
+                BlogName = x.Blog.Title,
+
+
+            }).ToList();
+            return Ok(values2);
         }
     }
 }

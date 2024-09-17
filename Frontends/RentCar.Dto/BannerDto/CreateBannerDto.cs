@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentCar.Dto.AboutDto
+namespace RentCar.Dto.BannerDto
 {
-    public class UpdateAboutDto
+    public class CreateBannerDto
     {
-        public int AboutId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public string VideoDescription { get; set; }
+        public string VideoUrl { get; set; }
     }
 }
