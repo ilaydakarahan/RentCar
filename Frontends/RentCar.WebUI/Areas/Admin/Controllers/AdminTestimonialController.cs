@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RentCar.Dto.AboutDto;
+using RentCar.Dto.TestimonialDto;
 using System.Text;
 
 namespace RentCar.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("[area]/[controller]/[action]/{id?}")]
-    public class AdminAboutController : Controller
+    public class AdminTestimonialController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminAboutController(IHttpClientFactory httpClientFactory)
+        public AdminTestimonialController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -19,29 +19,29 @@ namespace RentCar.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7214/api/Abouts");
+            var responseMessage = await client.GetAsync("https://localhost:7214/api/Testimonials");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult CreateAbout()
+        public IActionResult CreateTestimonial()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
+        public async Task<IActionResult> CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createAboutDto);
+            var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7214/api/Abouts", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7214/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -49,38 +49,38 @@ namespace RentCar.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> RemoveAbout(int id)
+        public async Task<IActionResult> RemoveTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7214/api/Abouts/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7214/api/Testimonials/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "AdminTestimonial", new { area = "Admin" });
             }
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateAbout(int id)
+        public async Task<IActionResult> UpdateTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7214/api/Abouts/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7214/api/Testimonials/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateAboutDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateTestimonialDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutDto)
+        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateAboutDto);
+            var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7214/api/Abouts", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7214/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

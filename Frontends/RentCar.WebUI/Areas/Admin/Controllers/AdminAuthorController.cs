@@ -6,7 +6,7 @@ using System.Text;
 namespace RentCar.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("Admin/[controller]/[action]/{id?}")]
+    [Route("[area]/[controller]/[action]/{id?}")]
     public class AdminAuthorController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
