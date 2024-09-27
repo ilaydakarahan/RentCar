@@ -60,19 +60,19 @@ namespace RentCar.Persistance.Repositories
         }
         public async Task<string> GetBlogTitleMaxBlogComment()
         {
-            // En fazla yoruma sahip blogun id'si
-            var values = await _context.Comments.GroupBy(x => x.BlogId).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefaultAsync(); 
-            // En fazla yoruma sahip blogun başlığı
-            var blogTitle = await _context.Blogs.Where(x => x.BlogId == values).Select(x => x.Title).FirstOrDefaultAsync(); 
-            return blogTitle ?? "Blog bulunamadı";
+            //// En fazla yoruma sahip blogun id'si
+            //var values = await _context.Comments.GroupBy(x => x.BlogId).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefaultAsync(); 
+            //// En fazla yoruma sahip blogun başlığı
+            //var blogTitle = await _context.Blogs.Where(x => x.BlogId == values).Select(x => x.Title).FirstOrDefaultAsync(); 
+            //return blogTitle ?? "Blog bulunamadı";
 
-            //var value = await _context.Comments.GroupBy(t => t.BlogId).Select(y => new
-            //{
-            //    BlogId = y.Key,
-            //    Count = y.Count()
-            //}).OrderByDescending(z => z.Count).Take(1).Select(t => t.BlogId).FirstOrDefaultAsync();
+            var value = await _context.Comments.GroupBy(t => t.BlogId).Select(y => new
+            {
+                BlogId = y.Key,
+                Count = y.Count()
+            }).OrderByDescending(z => z.Count).Take(1).Select(t => t.BlogId).FirstOrDefaultAsync();
 
-            //return await _context.Blogs.Where(x => x.BlogId == value).Select(z => z.Title).FirstOrDefaultAsync();
+            return await _context.Blogs.Where(x => x.BlogId == value).Select(z => z.Title).FirstOrDefaultAsync();
         }
 
         public async Task<string> GetBrandAndModelByRentPriceDailyMax()
