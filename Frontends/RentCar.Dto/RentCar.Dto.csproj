@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="ReservationDto\CreateReservationDto.cs~RF56796cb9.TMP" />
+  </ItemGroup>
+
 </Project>

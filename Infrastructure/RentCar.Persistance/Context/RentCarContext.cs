@@ -35,7 +35,18 @@ namespace RentCar.Persistance.Context
         public DbSet<Author> Authors { get; set; }
         public DbSet<TagCloud> TagClouds { get; set; }
         public DbSet<RentACar> RentACars { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<RentACarProcess> RentACarProcesses { get; set; }
         //public DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reservation>()
+                .HasOne(x => x.PickUpLocation).WithMany(t => t.PickUpReservation).HasForeignKey(z => z.PickupLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Reservation>()
+                .HasOne(t => t.DropOffLocation).WithMany(y => y.DropOffReservation).HasForeignKey(k => k.DropOffLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+        
+            //Bir tablo içerisinde iki farklı id'yi karşı tabloda tek id ile eşleştirme işlemi 
+        }
     }
 }
