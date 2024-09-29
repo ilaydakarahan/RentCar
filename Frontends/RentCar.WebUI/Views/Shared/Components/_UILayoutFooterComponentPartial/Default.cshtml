@@ -1,70 +1,121 @@
-﻿
-<footer class="ftco-footer ftco-bg-dark ftco-section">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2"><a href="#" class="logo">Rent<span>Car</span></a></h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">Sayfalar</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="/About/Index" class="py-2 d-block">Hakkımızda</a></li>
-                        <li><a href="/Car/Index" class="py-2 d-block">Araçlar</a></li>
-                        <li><a id="btn1" style="cursor:pointer;" class="py-2 d-block">Şartlar & koşulllar</a></li>
-                        <li><a id="btn2" style="cursor:pointer;" class="py-2 d-block">Güvenlik</a></li>
-                        <li><a id="btn3" style="cursor:pointer;" class="py-2 d-block">Çerez Politikası</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Destek</h2>
-                    <ul class="list-unstyled">
-                        <li><a id="btn4" style="cursor:pointer;" class="py-2 d-block">Sıkça sorulanlar</a></li>
-                        <li><a id="btn5" style="cursor:pointer;" class="py-2 d-block">Ödeme Yöntemleri</a></li>
-                        <li><a href="/CarPricing/Index" class="py-2 d-block">Kiralama</a></li>
-                        <li><a id="btn6" style="cursor:pointer;" class="py-2 d-block">Nasıl Çalışır</a></li>
-                        <li><a href="/Contact/Index" class="py-2 d-block">Bize Yazın</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Bir sorunuz mu var?</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+﻿@model List<ResultFooterAddressDto>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btn1').click(function () {
+            Swal.fire({
+                title: "Şartlar & Koşullar",
+                text: "RentCar araba kiralama hizmetlerini kullanarak, en az 21 yaşında olduğunuzu ve geçerli bir sürücü belgesine sahip olduğunuzu kabul edersiniz. Rezervasyonlar online veya telefonla yapılabilir ve ödeme kredi kartı,banka kartı veya nakit olarak kabul edilir. Kiralama süresi en az 24 saattir ve araçların zorunlu trafik sigortası kapsamındadır;ek ücret karşılığında kasko sigortası da sunulmaktadır. Araçlar sadece sözleşmede belirtilen kişiler tarafından kullanılabilir vekira başlangıcında belirlenen yakıt seviyesi ile iade edilmelidir. İade süresine uyulmaması durumunda ek ücretler uygulanabilir. CarBook, kiralama süresi boyunca meydana gelebilecek mekanik arızalar için sorumluluk alır ve aracın yasa dışı faaliyetlerde kullanılmaması gerektiğini belirtir.",
+                icon: "info"
+            });
+        });
+        $("#btn2").click(function () {
+            Swal.fire({
+                title: "Güvenlik",
+                text: "RentCar olarak, web sitemizi kullanan tüm müşterilerimizin veri güvenliğini en üst düzeyde tutmak için çeşitli güvenlik önlemleri uygulamaktayız. Kullanıcı kimlik doğrulama işlemlerinde JSON Web Token (JWT) teknolojisini kullanıyoruz. JWT, kullanıcı oturumlarını güvenli bir şekilde yönetmek ve yetkisiz erişimleri önlemek için güçlü bir yöntemdir. Ayrıca, kullanıcı bilgilerinin ve hassas verilerin korunması için SHA- 256 şifreleme algoritmasını kullanmaktayız.SHA - 256, verilerin güvenli bir şekilde saklanmasını ve iletilmesini sağlayarak, kötü niyetli kişilerin bu bilgilere erişimini engeller. Ödeme işlemleriniz sırasında da en yüksek güvenlik standartlarını uyguluyoruz.Kredi kartı ve diğer ödeme bilgileri, güvenli ödeme ağ geçitleri üzerinden işlenir ve üçüncü taraflarla paylaşılmaz.",
+                icon: "info"
+            });
+        });
+        $("#btn3").click(function () {
+            Swal.fire({
+                title: "Çerez Politikası",
+                text: "RentCar olarak, web sitemiz üzerinde çerezleri kullanarak kullanıcı deneyimini geliştirmek ve web sitesinin verimli çalışmasını sağlamak için çaba gösteriyoruz. Çerezler, kullanıcıların tercihlerini hatırlamamıza ve web sitesini ziyaret edenlerin davranışlarını analiz etmemize yardımcı olur. Ayrıca, reklamları kişiselleştirmek ve hedeflemek için çerezleri kullanabiliriz. Web sitemizi ziyaret ederek çerez kullanımını kabul etmiş sayılırsınız. Çerezleri nasıl kontrol edeceğiniz ve devre dışı bırakacağınız hakkında daha fazla bilgi için lütfen çerez politikamızı inceleyin.",
+                icon: "info"
+            });
+        });
+        $("#btn4").click(function () {
+            Swal.fire({
+                title: "Sıkça Sorulanlar",
+                text: "Sistem ile ilgili sık sorulan sorular yer alır.",
+                icon: "info"
+            });
+        });
+        $("#btn5").click(function () {
+            Swal.fire({
+                title: "Ödeme Yöntemleri",
+                text: "Ödeme işlemleri yalnızca fiziki lokasyonlarımızdaki kiralama noktalarında kart ile yapılmaktadır ",
+                icon: "info"
+            });
+        });
+        $("#btn6").click(function () {
+            Swal.fire({
+                title: "Nasıl Çalışır",
+                text:"1.Adım Aracınızı Kiralayın \n 2.Adım Mailinizi Kontrol Edin\n 3. Adım Ofisimize Gelin",               
+                icon: "info"
+            });
+        });
+    });
+</script>
+@foreach (var item in Model)
+{
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Rent<span>Car</span></a></h2>
+                        <p>@item.Description</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Sayfalar</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/About/Index" class="py-2 d-block">Hakkımızda</a></li>
+                            <li><a href="/Car/Index" class="py-2 d-block">Araçlar</a></li>
+                            <li><a href="javascript:void(0)" id="btn1" style="cursor:pointer;" class="py-2 d-block">Şartlar & Koşulllar</a></li>
+                            <li><a href="javascript:void(0)" id="btn2" style="cursor:pointer;" class="py-2 d-block">Güvenlik</a></li>
+                            <li><a href="javascript:void(0)" id="btn3" style="cursor:pointer;" class="py-2 d-block">Çerez Politikası</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Destek</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" id="btn4" style="cursor:pointer;" class="py-2 d-block">Sıkça Sorulanlar</a></li>
+                            <li><a href="javascript:void(0)" id="btn5" style="cursor:pointer;" class="py-2 d-block">Ödeme Yöntemleri</a></li>
+                            <li><a href="/CarPricing/Index" class="py-2 d-block">Kiralama</a></li>
+                            <li><a href="javascript:void(0)" id="btn6" style="cursor:pointer;" class="py-2 d-block">Nasıl Çalışır</a></li>
+                            <li><a href="/Contact/Index" class="py-2 d-block">Bize Yazın</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Bir sorunuz mu var?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text"> @item.Adress</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">@item.Phone</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">@item.Email</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm haklar saklıdır | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-
-                <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm haklar saklıdır | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
+    </footer>
+}
 
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+
 

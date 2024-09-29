@@ -27,7 +27,7 @@ namespace RentCar.WebUI.Areas.Admin.Controllers
                 int rnd1 = rnd.Next(0,101);
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<ResultStatisticDto>(jsonData);
-                ViewBag.carCount = values.carCount;
+				ViewBag.carCount = values.carCount;
                 ViewBag.rnd1 = rnd1;
             }
 
