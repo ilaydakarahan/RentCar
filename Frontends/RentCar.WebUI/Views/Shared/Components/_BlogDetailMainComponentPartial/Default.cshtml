@@ -8,7 +8,7 @@
         <img src="@Model.CoverImageURL" alt="" class="img-fluid">
     </p>
 
-    @await Component.InvokeAsync("_BlogDetailClodTagByBlogComponentPartial", new { id = ViewBag.blogid })
+    @await Component.InvokeAsync("_BlogDetailClodTagByBlogComponentPartial", new { id = ViewBag.blogid })   <!--Viewbag.blogid'ler Blog Controllerdan geliyorlar-->
     <!--Blog detayında yazarın üstünde gözüken etiketler kısmı. Bunlar da o bloğa ait etiketler-->
 
     @await Component.InvokeAsync("_BlogDetailAuthorAboutComponentPartial", new { id = ViewBag.blogid })
@@ -16,11 +16,10 @@
 
 
     <div class="pt-5 mt-5">
-        <h3 class="mb-5">Yorumlar</h3>
 
-        @await Component.InvokeAsync("_CommentListByBlogComponentPartial")
+        @await Component.InvokeAsync("_CommentListByBlogComponentPartial", new { id = ViewBag.blogid })
 
-        @await Component.InvokeAsync("_AddCommentComponentPartial")
+        @await Component.InvokeAsync("_AddCommentComponentPartial", new { id = ViewBag.blogid })
     </div>
 
 </div> 

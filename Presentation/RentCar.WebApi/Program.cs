@@ -14,6 +14,7 @@ using RentCar.Application.Features.RepositoryPattern;
 using RentCar.Application.Interfaces;
 using RentCar.Application.Interfaces.BlogInterfaces;
 using RentCar.Application.Interfaces.CarPricingInterfaces;
+using RentCar.Application.Interfaces.ICarFeatureInterfaces;
 using RentCar.Application.Interfaces.RentACarInterfaces;
 using RentCar.Application.Interfaces.StatisticInterfaces;
 using RentCar.Application.Interfaces.TagCloudInterfaces;
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
+builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 
 

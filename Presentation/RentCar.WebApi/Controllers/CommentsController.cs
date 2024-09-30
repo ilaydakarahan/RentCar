@@ -31,19 +31,19 @@ namespace RentCar.WebApi.Controllers
         }
 
 
-        //[HttpPost]
-        //public IActionResult CreateComment(CreateCommentDto comment)
-        //{
-        //    _commentRepository.Create(new Comment
-        //    {
-        //        BlogId = comment.BlogId,
-        //        CreatedDate = comment.CreatedDate,
-        //        Email = comment.Email,
-        //        Name = comment.Name,
-        //        CommentContent = comment.CommentContent
-        //    });
-        //    return Ok();
-        //}
+        [HttpPost]
+        public IActionResult CreateComment(CreateCommentDto comment)
+        {
+            _commentRepository.Create(new Comment
+            {
+                BlogId = comment.BlogId,
+                CreatedDate = comment.CreatedDate,
+                Email = comment.Email,
+                Name = comment.Name,
+                CommentContent = comment.CommentContent
+            });
+            return Ok();
+        }
         //[HttpPut]
         //public IActionResult UpdateComment(UpdateCommentDto updateCommentDto)
         //{

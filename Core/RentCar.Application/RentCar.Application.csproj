@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Features\Mediator\Handlers\CarFeatureHandlers\UpdateCarFeatureAvailableChangeToFalseCommandHandler.cs~RF609b0a6c.TMP" />
     <None Remove="Features\Mediator\Handlers\LocationHandlers\Read\GetLocationByIdQueryHandler.cs~RF6086c611.TMP" />
   </ItemGroup>
 
