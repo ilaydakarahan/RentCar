@@ -31,5 +31,16 @@ namespace RentCar.WebUI.Controllers
             }
             return View();
         }
+
+
+        public async Task<IActionResult> CarDetail(int id)
+        {
+            ViewBag.CarId = id;
+            ViewBag.Title1 = "Araç Detayları";
+            ViewBag.Title2 = "Aracın Özellikleri";
+
+            return View();
+
+        }
     }
 }

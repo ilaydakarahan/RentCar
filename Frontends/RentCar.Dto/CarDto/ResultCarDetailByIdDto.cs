@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentCar.Domain.Entities
+namespace RentCar.Dto.CarDto
 {
-    public class Car
+    public class ResultCarDetailByIdDto
     {
         public int CarId { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
         public string Model { get; set; }
+        public string BrandName { get; set; }   //Id ile birlikte adı getirsin diye ekledik.
         public string CoverImageUrl { get; set; }
         public int Km { get; set; }
         public string Transmission { get; set; }
@@ -19,13 +19,5 @@ namespace RentCar.Domain.Entities
         public byte Luggage { get; set; }
         public string Fuel { get; set; }
         public string BigImageUrl { get; set; }
-
-        public List<CarFeature> CarFeatures { get; set; }
-        public List<CarDescription> CarDescriptions { get; set; }
-        public List<CarPricing> CarPricings { get; set; }
-        public List<RentACar> RentACars { get; set; }
-        public List<RentACarProcess> RentACarProcesses { get; set; }
-        public List<Reservation> Reservations { get; set; }
-        public List<Review> Reviews { get; set; }
     }
 }
