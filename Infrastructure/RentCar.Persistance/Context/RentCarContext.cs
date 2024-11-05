@@ -15,6 +15,8 @@ namespace RentCar.Persistance.Context
             optionsBuilder.UseSqlServer("Server=DESKTOP-BFPJH2M;initial Catalog=DbRentCar;integrated Security =true;trustServerCertificate=true;");
         }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<BlogCategory> BlogCategorys { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -38,7 +40,6 @@ namespace RentCar.Persistance.Context
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<RentACarProcess> RentACarProcesses { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        //public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

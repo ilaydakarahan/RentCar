@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using RentCar.Application.Features.CQRS.Handlers.AboutHandlers.Read;
 using RentCar.Application.Features.CQRS.Handlers.AboutHandlers.Write;
 using RentCar.Application.Features.CQRS.Handlers.BannerHandlers.Read;
@@ -21,10 +23,32 @@ using RentCar.Application.Interfaces.ReviewInterfaces;
 using RentCar.Application.Interfaces.StatisticInterfaces;
 using RentCar.Application.Interfaces.TagCloudInterfaces;
 using RentCar.Application.Services;
+using RentCar.Application.Validators.ReviewValidators;
 using RentCar.Persistance.Context;
 using RentCar.Persistance.Repositories;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//JWT tanýmlama
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opts =>
+{
+    opts.RequireHttpsMetadata = false;
+    opts.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = "https://localhost",
+        ValidIssuer = "http://localhost",
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("rentcarrentcar0101")),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+    };
+});
+
+
 
 // Add services to the container.
 builder.Services.AddDbContext<RentCarContext>();
@@ -39,13 +63,6 @@ builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
-
-
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 
 
@@ -91,6 +108,18 @@ builder.Services.AddScoped<UpdateContactCommandHandler>();
 
 
 builder.Services.AddApplicationServices(builder.Configuration);
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateReviewValidator>();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 

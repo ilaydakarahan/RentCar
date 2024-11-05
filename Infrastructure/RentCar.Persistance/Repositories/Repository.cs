@@ -4,6 +4,7 @@ using RentCar.Persistance.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,11 @@ namespace RentCar.Persistance.Repositories
         public async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<T?> GetByFilter(Expression<Func<T, bool>> where)
+        {
+            return await _context.Set<T>().SingleOrDefaultAsync(where);
         }
 
         public async Task<T> GetByIdAsync(int id)
