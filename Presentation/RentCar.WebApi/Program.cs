@@ -30,8 +30,21 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using RentCar.Application.Tools;
+using RentCar.WebApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
+
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 //JWT tanýmlama
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opts =>
@@ -39,10 +52,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opts.RequireHttpsMetadata = false;
     opts.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidAudience = "https://localhost",
-        ValidIssuer = "http://localhost",
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
         ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("rentcarrentcar0101")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
     };
@@ -130,10 +143,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<CarHub>("/carhub");
 app.Run();

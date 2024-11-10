@@ -30,7 +30,9 @@ namespace RentCar.Application.Tools
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
 
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
             var expireDate = DateTime.UtcNow.AddDays(JwtTokenDefaults.Expire);
+
             JwtSecurityToken token = new JwtSecurityToken(
                             issuer: JwtTokenDefaults.ValidIssuer,
                             audience: JwtTokenDefaults.ValidAudience,
@@ -40,6 +42,7 @@ namespace RentCar.Application.Tools
                             );
 
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+
             return new TokenResponseDto(handler.WriteToken(token), expireDate);
 
         }

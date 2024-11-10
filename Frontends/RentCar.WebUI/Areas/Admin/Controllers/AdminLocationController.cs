@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RentCar.Dto.AboutDto;
 using RentCar.Dto.LocationDto;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace RentCar.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("[area]/[controller]/[action]/{id?}")]
     public class AdminLocationController : Controller
@@ -20,13 +22,18 @@ namespace RentCar.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7214/api/Locations");
-            if (responseMessage.IsSuccessStatusCode)
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken")?.Value;
+            if (token != null)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
-                return View(values);
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responseMessage = await client.GetAsync("https://localhost:7214/api/Locations");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+                    return View(values);
+                }
             }
             return View();
         }

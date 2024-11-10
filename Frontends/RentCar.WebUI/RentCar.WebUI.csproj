@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\LoginController.cs~RF243f691e.TMP" />
     <None Remove="Views\Shared\Components\_AboutUsComponentPartial\Default.cshtml~RF6996639a.TMP" />
     <None Remove="Views\Shared\Components\_UILayoutScriptComponentPartial\Default.cshtml~RF65549ca1.TMP" />
   </ItemGroup>
@@ -416,6 +417,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
   </ItemGroup>
 

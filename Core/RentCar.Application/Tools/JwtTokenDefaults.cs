@@ -11,7 +11,7 @@ namespace RentCar.Application.Tools
     {
         public const string ValidAudience = "https://localhost";
         public const string ValidIssuer = "https://localhost";
-        public const string Key = "rentcarrentcar01";
+        public const string Key = "RENTCAR010101+RENTCAR010203+RENTCar";
         public const int Expire = 3;
     }
 }
